@@ -1,16 +1,42 @@
-import React from 'react';
-import Joke from './Joke';
+import React from "react";
+import { connect } from 'react-redux';
+import Joke from "./Joke";
+import { addToFavourite, removeFromFavourite } from "../../store/actions/favouriteActions"
 
-const JokeList = ({jokes}) => {
-    return (
+function JokeList({ jokes, option, category, search }) {
+  if (option === "random") {
+    return <Joke joke={jokes} addToFavourite={addToFavourite} removeFromFavourite={removeFromFavourite} />;
+  } else if (option === "categories") {
+    if (category === "") {
+      return <div>Please, choose a category.</div>;
+    } else {
+      return <Joke joke={jokes} />;
+    }
+  } else if (option === "search") {
+    if (search === "") {
+      return <div>Please, enter your request</div>;
+    } else {
+      return (
         <ul>
-            <Joke joke={jokes} />
+          {jokes.result && jokes.result.map((joke) => (
+            <Joke joke={joke} />
+          ))}
         </ul>
+      );
+    }
+  }
+};
 
-        // <ul>
-        //     { jokes.map(joke => <Joke joke={joke} key={joke.id} />) }
-        // </ul>
-    )
+const mapStateToProps = state => {
+  return {
+    favouriteJokes: state.favJokes.favouriteJokes
+  }
 }
 
-export default JokeList
+
+const mapDispatchToProps= {
+  addToFavourite,
+  removeFromFavourite
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(JokeList)

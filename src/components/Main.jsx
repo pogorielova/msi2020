@@ -3,9 +3,6 @@ import Form from "./form_cmpnnts/Form";
 import JokeList from "./joke_cmpnnts/JokeList";
 
 const api = "https://api.chucknorris.io/jokes";
-const randomPath = "/random";
-const categoryPath = "/random?category=animal";
-const searchPath = "/search?query=dad";
 
 export default class Main extends React.Component {
   state = {
@@ -13,41 +10,35 @@ export default class Main extends React.Component {
     isLoaded: false,
     renderOption: "random",
     category: "",
-    apiPath: `${api}${randomPath}`,
+    search: "",
+    apiPath: `${api}/random`,
   };
 
   componentDidMount() {
     this.fetchJokes();
   }
 
-  handleCategoryChoose = (e) => {
-    
-    console.log(e)
-    // this.setState({ category: e })
-  }
-
   //================= PATH BUILDER
 
   handleRadioCheck = (e) => {
-    
     this.setState({ renderOption: e });
-    
-    if(e === 'random') {
-      this.setState({apiPath: `${api}${randomPath}`})
-    } 
-    else if (e === 'categories') {
-      this.setState({apiPath: `${api}${categoryPath}`})
-    } 
-    else if (e === 'search') {
-      this.setState({apiPath: `${api}${searchPath}`})
-    }
-  };
 
+    if (e === "random") {
+      this.setState({ apiPath: `${api}/random` });
+    } else if (e === "categories") {
+      this.setState({
+        apiPath: `${api}/random?category=${this.state.category}`,
+      });
+    }
+    // else if (e === 'search') {
+    //   const searchPath = this.state.search
+    //   this.setState({apiPath: `${api}/search?query=${searchPath}`})
+    // }
+  };
 
   //================= FETCHER
 
   fetchJokes = () => {
-
     fetch(this.state.apiPath)
       .then((res) => res.json())
       .then((json) => {
@@ -56,21 +47,30 @@ export default class Main extends React.Component {
           jokes: json,
         });
       });
-
   };
 
+
+  handleCategoryChoose = (e) => {
+    this.setState({ category: e.target.value });
+    this.setState({ apiPath: `${api}/random?category=${e.target.value}` });
+  };
+
+  handleSearchInput = (e) => {
+    this.setState({ search: e.target.value });
+    this.setState({ apiPath: `${api}/search?query=${e.target.value}` });
+  };
 
   //================= MAIN BUTTON
 
   handleGetAJoke = () => {
-    this.fetchJokes()
-  }
-
+    this.fetchJokes();
+    this.setState({search: ""})
+  };
 
   //=================  RENDER
 
   render() {
-    const { isLoaded, jokes, renderOption, category } = this.state;
+    const { isLoaded, jokes, renderOption, category, search } = this.state;
 
     return (
       <div className="main-container">
@@ -80,11 +80,22 @@ export default class Main extends React.Component {
           </header>
           <h1>Hey!</h1>
           <h3>Let’s try to find a joke for you:</h3>
-          <Form option={renderOption} handleRadioCheck={this.handleRadioCheck} category={category} handleCategoryChoose={this.handleCategoryChoose} handleGetAJoke={this.handleGetAJoke} />
-          {!isLoaded ? "Loading..." : <JokeList jokes={jokes} />}
+          <Form
+            option={renderOption}
+            handleRadioCheck={this.handleRadioCheck}
+            category={category}
+            handleCategoryChoose={this.handleCategoryChoose}
+            search={search}
+            handleSearchInput={this.handleSearchInput}
+            handleGetAJoke={this.handleGetAJoke}
+          />
+          {!isLoaded ? (
+            "Loading..."
+          ) : (
+            <JokeList jokes={jokes} option={renderOption} category={category} search={search} />
+          )}
         </div>
       </div>
     );
   }
 }
-

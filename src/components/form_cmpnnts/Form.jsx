@@ -25,7 +25,7 @@ const Form = (props) => {
           <Radio value="search" className="custom-radio" /> Search
         </div>
 
-        {props.option === "search" && <SearchInput />}
+        {props.option === "search" && <SearchInput handleSearchInput={props.handleSearchInput} value={props.search} />}
       </RadioGroup>
       <button onClick={props.handleGetAJoke} className="get-btn">
         Get a joke

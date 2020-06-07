@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export class SearchInput extends Component {
-    render() {
-        return (
-            <div>
-                <input type="text" className="srch-input" placeholder="Free text search..." />
-            </div>
-        )
-    }
+const SearchInput = ({handleSearchInput, value}) => {
+    
+    return (
+        <div>
+            <input type="text" className="srch-input" placeholder="Free text search..." onChange={handleSearchInput} value={value} />
+        </div>
+    
+    )
 }
 
-export default SearchInput
+export default SearchInput;

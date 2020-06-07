@@ -1,6 +1,83 @@
 .joke-container {
+    position: relative;
     list-style: none;
-    min-height: 225px;
+    min-height: 200px;
     background: #F8F8F8;
     border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 20px;
+
+    .favourite-btn {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    .flex {
+        display: flex;
+        align-items: flex-start;
+        margin-top: 30px;
+
+        .joke-content {
+            padding-left: 20px;
+            width: 100%;
+
+            .id {
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 14px;
+                color: #ABABAB;
+                margin-bottom: 10px;
+
+                .id-link {
+                    color: #8EA7FF;
+                }
+
+                .link-icon {
+                    margin-left: 5px;
+                }
+            }
+
+            .joke {
+                font-size: 18px;
+                line-height: 26px;
+                color: #333333;
+                margin-bottom: 28px;
+            }
+
+            .joke-footer-flx {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .update {
+                    font-size: 10px;
+                    line-height: 14px;
+                    color: #ABABAB;
+
+                    .update-b {
+                        font-weight: 500;
+                    }
+                }
+
+                .ctgr-display {
+                    font-weight: 500;
+                    font-size: 10px;
+                    line-height: 14px;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    color: #333333;
+                    background-color: #FFFFFF;
+                    border-radius: 6px;
+                    padding: 5px 20px;
+                }
+            }
+        }
+    }
 }

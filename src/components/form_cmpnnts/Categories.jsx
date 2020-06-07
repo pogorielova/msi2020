@@ -1,16 +1,27 @@
 import React from "react";
-import { RadioGroup } from "react-radio-group";
-import { RadioButton } from "react-custom-radio";
 
 const Categories = ({ handleCategoryChoose, category }) => {
+  const categories = [
+    { name: "animal", label: "Animal", id: 1, onFocus: false },
+    { name: "career", label: "Career", id: 2, onFocus: false },
+    { name: "celebrity", label: "Celebrity", id: 3, onFocus: false },
+    { name: "dev", label: "Dev", id: 4, onFocus: false },
+  ];
 
   return (
-    <RadioGroup name="categories" className="ctgrs" onChange={handleCategoryChoose} selectedValue={category} >
-      <RadioButton value="animal" className="ctgr-btn" >Animal</RadioButton>
-      <RadioButton value="career" className="ctgr-btn" >Career</RadioButton>
-      <RadioButton value="celebrity" className="ctgr-btn" >Celebrity</RadioButton>
-      <RadioButton value="dev" className="ctgr-btn" >Dev</RadioButton>
-    </RadioGroup>
+    <div className="categories">
+      {categories.map((category) => (
+        <button
+          type="button"
+          value={category.name}
+          key={category.id}
+          className="ctgr-btn"
+          onClick={handleCategoryChoose}
+        >
+          {category.label}
+        </button>
+      ))}
+    </div>
   );
 };
 
