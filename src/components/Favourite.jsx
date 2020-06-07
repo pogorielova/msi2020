@@ -5,7 +5,7 @@ import Joke from "./joke_cmpnnts/Joke";
 function Favourite(props) {
     return (
       <div className="favourite-container">
-        <div className="favourite-title">Favourite</div>
+        {/* <div className="favourite-title">Favourite</div> */}
         <ul className="favourite-jokes">
         { 
             props.favouriteJokes.map(item => <Joke joke={item} isFavourite={props.favouriteJokes.includes(item)} />)

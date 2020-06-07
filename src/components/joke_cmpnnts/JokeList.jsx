@@ -8,7 +8,7 @@ function JokeList({ jokes, option, category, search }) {
     return <Joke joke={jokes} addToFavourite={addToFavourite} removeFromFavourite={removeFromFavourite} />;
   } else if (option === "categories") {
     if (category === "") {
-      return <div>Please, choose a category.</div>;
+      return <div>Choose a category.</div>;
     } else {
       return <Joke joke={jokes} />;
     }
