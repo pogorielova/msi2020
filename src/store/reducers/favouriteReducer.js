@@ -5,7 +5,7 @@ const initialStore ={
   export const favJokeReducer = (initialState = initialStore, action) => {
     if(action.type === 'ADD TO FAVOURITE') {
       return {
-        favouriteJokes: [...initialState.favoriteJokes, action.payload]
+        favouriteJokes: [...initialState.favouriteJokes, action.payload]
       }
     }
   

@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux';
 import Joke from "./Joke";
-import { addToFavourite, removeFromFavourite } from "../../store/actions/favouriteActions"
+import { addToFavorite, removeFromFavorite } from "../../store/actions/favouriteActions"
 
 function JokeList({ jokes, option, category, search }) {
   if (option === "random") {
-    return <Joke joke={jokes} addToFavourite={addToFavourite} removeFromFavourite={removeFromFavourite} />;
+    return <Joke joke={jokes} addToFavorite={addToFavorite} removeFromFavorite={removeFromFavorite} />;
   } else if (option === "categories") {
     if (category === "") {
       return <div>Choose a category.</div>;
@@ -14,7 +14,7 @@ function JokeList({ jokes, option, category, search }) {
     }
   } else if (option === "search") {
     if (search === "") {
-      return <div>Please, enter your request</div>;
+      return <div>Enter your request</div>;
     } else {
       return (
         <ul>
@@ -29,14 +29,14 @@ function JokeList({ jokes, option, category, search }) {
 
 const mapStateToProps = state => {
   return {
-    favouriteJokes: state.favJokes.favouriteJokes
+    favoriteJokes: state.favJokes.favoriteJokes
   }
 }
 
 
 const mapDispatchToProps= {
-  addToFavourite,
-  removeFromFavourite
+  addToFavorite,
+  removeFromFavorite
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(JokeList)

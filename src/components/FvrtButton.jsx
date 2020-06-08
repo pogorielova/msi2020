@@ -7,7 +7,7 @@ const FvrtButton = ({on, favToggle}) => {
     const imgForButton = !on ? <img src={fvrtOpen} alt="heart" className="fvrt-icon" /> : <img src={fvrtClose} alt="heart" className="fvrt-icon" />;
 
  return (
- <button className="fvrt-button" onClick={favToggle}>{imgForButton}Favourite</button>
+ <button className="fvrt-button" onClick={favToggle}>{imgForButton}Favorite</button>
  )
 }
 

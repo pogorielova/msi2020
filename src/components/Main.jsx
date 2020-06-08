@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "./form_cmpnnts/Form";
 import JokeList from "./joke_cmpnnts/JokeList";
-import Favourite from "./Favourite";
+import Favorite from "./Favorite";
 import FvrtButton from '../components/FvrtButton'
 
 const api = "https://api.chucknorris.io/jokes";
@@ -14,7 +14,7 @@ export default class Main extends React.Component {
     category: "",
     search: "",
     apiPath: `${api}/random`,
-    favouriteOn: false,
+    favoriteOn: false,
   };
 
   componentDidMount() {
@@ -70,18 +70,18 @@ export default class Main extends React.Component {
     this.setState({search: ""})
   };
 
-  //================= FAVOURITE TOGGLE
+  //================= FAVORITE TOGGLE
 
   favToggle = () => {
     this.setState({
-      favouriteOn: !this.state.favouriteOn
+      favoriteOn: !this.state.favoriteOn
     });
   }
 
   //================= RENDER
 
   render() {
-    const { isLoaded, jokes, renderOption, category, search, favouriteOn } = this.state;
+    const { isLoaded, jokes, renderOption, category, search, favoriteOn } = this.state;
 
     return (
       <div className="main-container">
@@ -106,8 +106,8 @@ export default class Main extends React.Component {
             <JokeList jokes={jokes} option={renderOption} category={category} search={search} />
           )}
         </div>
-        {this.state.favouriteOn && <Favourite />}
-        <FvrtButton on={favouriteOn}  favToggle={this.favToggle} />
+        {this.state.favoriteOn && <><div className="greyback"></div><Favorite /></>}
+        <FvrtButton on={favoriteOn}  favToggle={this.favToggle} />
       </div>
     );
   }

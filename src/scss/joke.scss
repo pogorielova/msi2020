@@ -7,7 +7,7 @@
     padding: 40px;
     margin-bottom: 20px;
 
-    .favourite-btn {
+    .favorite-btn {
         position: absolute;
         top: 40px;
         right: 40px;
@@ -80,4 +80,15 @@
             }
         }
     }
+}
+
+@media only screen and (max-width: 415px) {
+    .joke-container {
+        padding: 20px;
+
+        .favorite-btn {
+            top: 20px;
+            right: 20px;
+        }  
+    }  
 }
