@@ -1,16 +1,22 @@
 import React from "react";
-import Form from "./form_cmpnnts/Form";
-import JokeList from "./joke_cmpnnts/JokeList";
+import Form from "./formCmpnnts/Form";
+import JokeList from "./jokeCmpnnts/JokeList";
 import Favorite from "./Favorite";
-import FvrtButton from '../components/FvrtButton'
+import FvrtButton from "../components/FvrtButton";
 
 const api = "https://api.chucknorris.io/jokes";
 
+export const jokeRenderOption = {
+  RANDOM: "random",
+  CATEGORIES: "categories",
+  SEARCH: "search",
+};
+
 export default class Main extends React.Component {
   state = {
-    jokes: [],
+    jokes: {result: []},
     isLoaded: false,
-    renderOption: "random",
+    renderOption: jokeRenderOption.RANDOM,
     category: "",
     search: "",
     apiPath: `${api}/random`,
@@ -24,11 +30,11 @@ export default class Main extends React.Component {
   //================= PATH BUILDER
 
   handleRadioCheck = (e) => {
-    this.setState({ renderOption: e });
+    this.setState({ renderOption: e, search: '', category: '', jokes: []});
 
-    if (e === "random") {
-      this.setState({ apiPath: `${api}/random` });
-    } else if (e === "categories") {
+    if (e === jokeRenderOption.RANDOM) {
+      this.setState({ apiPath: `${api}/random`});
+    } else if (e === jokeRenderOption.CATEGORIES) {
       this.setState({
         apiPath: `${api}/random?category=${this.state.category}`,
       });
@@ -52,7 +58,6 @@ export default class Main extends React.Component {
       });
   };
 
-
   handleCategoryChoose = (e) => {
     this.setState({ category: e.target.value });
     this.setState({ apiPath: `${api}/random?category=${e.target.value}` });
@@ -67,21 +72,28 @@ export default class Main extends React.Component {
 
   handleGetAJoke = () => {
     this.fetchJokes();
-    this.setState({search: ""})
+    this.setState({ search: "" });
   };
 
   //================= FAVORITE TOGGLE
 
   favToggle = () => {
     this.setState({
-      favoriteOn: !this.state.favoriteOn
+      favoriteOn: !this.state.favoriteOn,
     });
-  }
+  };
 
   //================= RENDER
 
   render() {
-    const { isLoaded, jokes, renderOption, category, search, favoriteOn } = this.state;
+    const {
+      isLoaded,
+      jokes,
+      renderOption,
+      category,
+      search,
+      favoriteOn,
+    } = this.state;
 
     return (
       <div className="main-container">
@@ -103,11 +115,21 @@ export default class Main extends React.Component {
           {!isLoaded ? (
             "Loading..."
           ) : (
-            <JokeList jokes={jokes} option={renderOption} category={category} search={search} />
+            <JokeList
+              jokes={jokes}
+              option={renderOption}
+              category={category}
+              search={search}
+            />
           )}
         </div>
-        {this.state.favoriteOn && <><div className="greyback"></div><Favorite /></>}
-        <FvrtButton on={favoriteOn}  favToggle={this.favToggle} />
+        {this.state.favoriteOn && (
+          <>
+            <div className="greyback"></div>
+            <Favorite />
+          </>
+        )}
+        <FvrtButton on={favoriteOn} favToggle={this.favToggle} />
       </div>
     );
   }

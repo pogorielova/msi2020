@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
-import Joke from "./joke_cmpnnts/Joke";
+import Joke from "./jokeCmpnnts/Joke";
 
 function Favorite(props) {
     return (
       <div className="favorite-drower">
         <ul className="favorite-jokes">
         { 
-            props.favouriteJokes.map(item => <Joke joke={item} isFavorite={props.favouriteJokes.includes(item)} />)
+            props.favoriteJokes.map(item => <Joke joke={item} isFavorite={props.favouriteJokes.includes(item)} />)
         }
           
         </ul>
@@ -17,7 +17,7 @@ function Favorite(props) {
 
   const mapStateToProps = (state) => {
     return {
-      favouriteJokes: state.favJokes.favouriteJokes
+      favoriteJokes: state.favJokes.favoriteJokes
     }
 }
 

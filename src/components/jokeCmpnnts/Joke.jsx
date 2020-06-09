@@ -1,22 +1,23 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { addToFavorite, removeFromFavorite} from '../../store/actions/favouriteActions'
+import { addToFavorite, removeFromFavorite} from '../../store/actions/favoriteActions'
 import messageIcon from "../../icons/message-icon.svg";
 import linkIcon from "../../icons/link-icon.svg";
 import heartEpmty from "../../icons/heart-empty.svg";
 import heartFilled from "../../icons/heart-filled.svg";
 import TimeAgo from "react-timeago";
 
-function Joke({ joke, isFavorite }) {
+function Joke({ joke, isFavourite }) {
 
-  const imgForButton = !isFavorite ? <img src={heartEpmty} alt="heart" /> : <img src={heartFilled} alt="heart" />;
+  const imgForButton = !isFavourite ? <img src={heartEpmty} alt="heart" /> : <img src={heartFilled} alt="heart" />;
 
-  const clickHandler = !isFavorite ? addToFavorite : removeFromFavorite
+  const clickHandler = !isFavourite ? addToFavorite : removeFromFavorite
+
+  console.log(joke)
 
   return (
     <li className="joke-container">
       <button className="favorite-btn" onClick={(e) => {
-                e.stopPropagation();
                 clickHandler(joke)
               }}>
         {imgForButton}
@@ -42,14 +43,13 @@ function Joke({ joke, isFavorite }) {
           </div>
         </div>
       </div>
-      {console.log(joke)}
     </li>
   );
 };
 
 const mapDispatchToProps = {
   addToFavorite,
-  removeFromFavorite
+  removeFromFavorite,
 }
 
 export default connect(null, mapDispatchToProps)(Joke)

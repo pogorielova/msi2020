@@ -2,10 +2,10 @@ import React from "react";
 
 const Categories = ({ handleCategoryChoose, category }) => {
   const categories = [
-    { name: "animal", label: "Animal", id: 1, onFocus: false },
-    { name: "career", label: "Career", id: 2, onFocus: false },
-    { name: "celebrity", label: "Celebrity", id: 3, onFocus: false },
-    { name: "dev", label: "Dev", id: 4, onFocus: false },
+    { name: "animal", label: "Animal", id: 1 },
+    { name: "career", label: "Career", id: 2 },
+    { name: "celebrity", label: "Celebrity", id: 3 },
+    { name: "dev", label: "Dev", id: 4 },
   ];
 
   return (
