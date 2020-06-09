@@ -3,6 +3,7 @@ import Form from "./formCmpnnts/Form";
 import JokeList from "./jokeCmpnnts/JokeList";
 import Favorite from "./Favorite";
 import FvrtButton from "../components/FvrtButton";
+import ScrollUpButton from "react-scroll-up-button";
 
 const api = "https://api.chucknorris.io/jokes";
 
@@ -126,6 +127,7 @@ export default class Main extends React.Component {
           </>
         )}
         <FvrtButton on={favoriteOn} favToggle={this.favToggle} />
+        <ScrollUpButton style={{width: 25, height: 25}} />
       </div>
     );
   }
