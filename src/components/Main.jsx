@@ -30,7 +30,7 @@ export default class Main extends React.Component {
   //================= PATH BUILDER
 
   handleRadioCheck = (e) => {
-    this.setState({ renderOption: e, search: '', category: '', jokes: []});
+    this.setState({ renderOption: e, search: '', category: '', jokes: {result: []}});
 
     if (e === jokeRenderOption.RANDOM) {
       this.setState({ apiPath: `${api}/random`});
@@ -39,10 +39,6 @@ export default class Main extends React.Component {
         apiPath: `${api}/random?category=${this.state.category}`,
       });
     }
-    // else if (e === 'search') {
-    //   const searchPath = this.state.search
-    //   this.setState({apiPath: `${api}/search?query=${searchPath}`})
-    // }
   };
 
   //================= FETCHER
@@ -53,7 +49,7 @@ export default class Main extends React.Component {
       .then((json) => {
         this.setState({
           isLoaded: true,
-          jokes: json,
+          jokes: json.result ? json : {result: [json]},
         });
       });
   };
