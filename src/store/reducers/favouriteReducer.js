@@ -13,7 +13,7 @@ const initialStore ={
   
     if(action.type === Actions.REMOVE_FROM_FAVORITE) {
       return {
-        favoriteJokes: initialState.favouriteJokes.filter(item => item !== action.payload) 
+        favoriteJokes: initialState.favoriteJokes.filter(item => item !== action.payload) 
       }
     }
   

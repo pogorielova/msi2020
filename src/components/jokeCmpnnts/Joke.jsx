@@ -7,13 +7,11 @@ import heartEpmty from "../../icons/heart-empty.svg";
 import heartFilled from "../../icons/heart-filled.svg";
 import TimeAgo from "react-timeago";
 
-function Joke({ joke, isFavourite }) {
+function Joke({ joke, isFavourite, addToFavorite, removeFromFavorite }) {
 
   const imgForButton = !isFavourite ? <img src={heartEpmty} alt="heart" /> : <img src={heartFilled} alt="heart" />;
 
   const clickHandler = !isFavourite ? addToFavorite : removeFromFavorite
-
-  console.log(joke)
 
   return (
     <li className="joke-container">

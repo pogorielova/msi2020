@@ -50,16 +50,22 @@
     }
 
     .favorite-drower {
-        min-width: 480px;
+        width: 480px;
         min-height: 100vh;
         height: auto;
         background: #F8F8F8;
         padding: 40px;
+        padding-top: 70px;
 
-        .favorite-title {
-            font-weight: 500;
-            font-size: 20px;
-            color: #ABABAB;
+        .joke-container {
+            padding: 20px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
+            .favorite-btn {
+                top: 20px;
+                right: 20px;
+            }
         }
     }
 
@@ -123,8 +129,9 @@
 
 @media only screen and (max-width: 415px) {
     .favorite-drower {
+        max-width: 100%;
         position: fixed;
-        width: 100%;
-        height: 100%;
+        padding: 20px !important;
+        padding-top: 70px !important;
     }
 }
