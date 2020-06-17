@@ -56,6 +56,7 @@
         background: #F8F8F8;
         padding: 40px;
         padding-top: 70px;
+        scroll-behavior: smooth;
 
         .joke-container {
             padding: 20px;
@@ -118,8 +119,11 @@
 
     .favorite-drower {
         position: fixed;
+        top: 0;
         right: 0;
+        bottom: 0;
         height: 100%;
+        overflow-y: scroll;
     }
 
     .greyback {
@@ -131,6 +135,10 @@
     .favorite-drower {
         max-width: 100%;
         position: fixed;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        overflow-y: scroll;
         padding: 20px !important;
         padding-top: 70px !important;
     }

@@ -1,6 +1,36 @@
-import {combineReducers, createStore} from 'redux';
-import { favJokeReducer } from './favouriteReducer'
+import { combineReducers, createStore } from "redux";
+import { favJokeReducer } from "./favouriteReducer";
 
-const reducers = combineReducers({favJokes: favJokeReducer});
+function saveToLocalStorage(state) {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("state", serializedState);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
-export const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+function loadFromLocalStorage() {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.log(e);
+    return undefined;
+  }
+}
+
+const persistedState = loadFromLocalStorage();
+
+const rootReducer = combineReducers({ favJokes: favJokeReducer });
+
+export const store = createStore(
+  rootReducer,
+  persistedState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+store.subscribe(() => saveToLocalStorage(store.getState()));
