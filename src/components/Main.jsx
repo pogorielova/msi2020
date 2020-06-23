@@ -98,8 +98,7 @@ export default class Main extends React.Component {
           <header>
             <div className="logo">MSI2020</div>
           </header>
-          <h1>Hey!</h1>
-          <h3>Let’s try to find a joke for you:</h3>
+          <h1>Let Chuck to make you laught</h1>
           <Form
             option={renderOption}
             handleRadioCheck={this.handleRadioCheck}
@@ -127,7 +126,7 @@ export default class Main extends React.Component {
           </>
         )}
         <FvrtButton on={favoriteOn} favToggle={this.favToggle} />
-        <ScrollUpButton style={{width: 25, height: 25}} />
+        <ScrollUpButton style={{width: 25, height: 25, outline: "none"}} />
       </div>
     );
   }
