@@ -23,6 +23,8 @@
 
     .main-wrapper {
         width: 680px;
+        height: 100vh;
+        overflow-y: scroll;
         margin: auto;
         padding: 20px;
         margin-top: 0;
@@ -46,18 +48,17 @@
             font-weight: 500;
             font-size: 24px;
             line-height: 44px;
-            
+
         }
     }
 
     .favorite-drower {
         width: 480px;
-        min-height: 100vh;
-        height: auto;
+        height: 100vh;
+        overflow-y: scroll;
         background: #F8F8F8;
         padding: 40px;
         padding-top: 70px;
-        scroll-behavior: smooth;
 
         .joke-container {
             padding: 20px;
