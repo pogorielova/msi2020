@@ -89,29 +89,38 @@
 }
 
 
-
-.get-btn {
-    width: 152px;
-    height: 42px;
-    background: linear-gradient(92.01deg, #8EA7FF 0%, #7291FF 100%);
-    border: none;
-    border-radius: 10px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 22px;
-    color: #FFFFFF;
-    outline: none;
-    transition: all 0.2s;
+.submit-field {
+    display: flex;
+    align-items: flex-end;
     margin-bottom: 40px;
-    cursor: pointer;
 
-    &:hover {
-        transform: scale(1.03);
+    .get-btn {
+        width: 152px;
+        height: 42px;
+        background: linear-gradient(92.01deg, #8EA7FF 0%, #7291FF 100%);
+        border: none;
+        border-radius: 5px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 22px;
+        color: #FFFFFF;
+        outline: none;
+        transition: all 0.2s;
+        cursor: pointer;
+    
+        &:hover {
+            transform: scale(1.03);
+        }
+    
+        &:active {
+            transform: scale(0.97);
+        }
     }
-
-    &:active {
-        transform: scale(0.97);
+    
+    .enter-sign {
+        color: #ABABAB;
+        margin-left: 10px;
     }
 }

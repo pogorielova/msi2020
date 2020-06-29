@@ -15,7 +15,7 @@ export const jokeRenderOption = {
 
 export default class Main extends React.Component {
   state = {
-    jokes: {result: []},
+    jokes: { result: [] },
     isLoaded: false,
     renderOption: jokeRenderOption.RANDOM,
     category: "",
@@ -31,10 +31,15 @@ export default class Main extends React.Component {
   //================= PATH BUILDER
 
   handleRadioCheck = (e) => {
-    this.setState({ renderOption: e, search: '', category: '', jokes: {result: []}});
+    this.setState({
+      renderOption: e,
+      search: "",
+      category: "",
+      jokes: { result: [] },
+    });
 
     if (e === jokeRenderOption.RANDOM) {
-      this.setState({ apiPath: `${api}/random`});
+      this.setState({ apiPath: `${api}/random` });
     } else if (e === jokeRenderOption.CATEGORIES) {
       this.setState({
         apiPath: `${api}/random?category=${this.state.category}`,
@@ -50,7 +55,7 @@ export default class Main extends React.Component {
       .then((json) => {
         this.setState({
           isLoaded: true,
-          jokes: json.result ? json : {result: [json]},
+          jokes: json.result ? json : { result: [json] },
         });
       });
   };
@@ -71,6 +76,12 @@ export default class Main extends React.Component {
     this.fetchJokes();
     this.setState({ search: "" });
   };
+
+  handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      this.handleGetAJoke()
+    }
+  }
 
   //================= FAVORITE TOGGLE
 
@@ -93,12 +104,12 @@ export default class Main extends React.Component {
     } = this.state;
 
     return (
-      <div className="main-container">
+      <div className="main-container" onKeyPress={this.handleKeyPress}>
         <div className="main-wrapper">
           <header>
             <div className="logo">MSI2020</div>
           </header>
-          <h1>Let Chuck to make you laught</h1>
+          <h1>Let Chuck make you laugh</h1>
           <Form
             option={renderOption}
             handleRadioCheck={this.handleRadioCheck}
@@ -126,7 +137,7 @@ export default class Main extends React.Component {
           </>
         )}
         <FvrtButton on={favoriteOn} favToggle={this.favToggle} />
-        <ScrollUpButton style={{width: 25, height: 25, outline: "none"}} />
+        <ScrollUpButton style={{ width: 25, height: 25, outline: "none" }} />
       </div>
     );
   }

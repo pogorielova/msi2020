@@ -4,6 +4,7 @@ import Categories from "./Categories";
 import SearchInput from "./SearchInput";
 
 const Form = (props) => {
+
   return (
     <>
       <RadioGroup
@@ -27,9 +28,10 @@ const Form = (props) => {
 
         {props.option === "search" && <SearchInput handleSearchInput={props.handleSearchInput} value={props.search} />}
       </RadioGroup>
-      <button onClick={props.handleGetAJoke} className="get-btn">
+      <div className="submit-field"><button onClick={props.handleGetAJoke} className="get-btn" >
         Get a joke
-      </button>
+      </button> <span className="enter-sign">Enter &#9166;</span>
+      </div>
     </>
   );
 };

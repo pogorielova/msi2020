@@ -9,11 +9,11 @@ function JokeList ({jokes, option, category, search, addToFavorite, removeFromFa
   const isFavourite = (joke) => favoriteJokes.includes(joke);
 
   if ((option === jokeRenderOption.CATEGORIES && category === "") || (option === jokeRenderOption.CATEGORIES && !jokes.result.length)) {
-      return <div>Choose a category and submit</div>;
+      return <div>Choose a category and click "Get a joke" or press Enter</div>;
   } else if (option === jokeRenderOption.SEARCH && search === "" && !jokes.result.length) {
-      return <div>Enter your request and submit</div>;
+      return <div>Type your request word and click "Get a joke" or press Enter</div>;
   } else if (option === jokeRenderOption.RANDOM && !jokes.result.length) {
-    return <div>Submit to recieve a joke</div>;
+    return <div>Click "Get a joke" or press Enter to recieve a joke</div>;
   }
   return (
       <ul>
